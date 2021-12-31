@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package serve;
+
+
+service MainService{
+    rpc Call(MainRequest) returns (ScoreResponse){}
+}
+
+service ProfileService {
+    rpc CallUserProfile(UserProfileRequest) returns (UserProfileResponse){}
+    rpc CallMovieProfile(MovieProfileRequest) returns (MovieProfileResponse){}
+}
+service ReCallService{
+    rpc CallReCall(ReCallRequest) returns (ReCallResponse){}
+}
+service ScoreService{
+    rpc CallScore(ScoreRequest) returns (ScoreResponse){}
+}
+message MainRequest{
+    int64 user_id = 1;
+}
+
+message UserProfileRequest{
+    int64 user_id = 1;
+}
+
+message UserProfileResponse{
+    string f = 1;
+    string h = 2;
+    double high = 3;
+    int32 total = 4;
+    double hratings = 5;
+}
+message MovieProfileRequest{
+    int64 movie_id = 1;
+}
+message MovieProfileResponse{
+    double mean =1;
+    int32 total_time = 2;
+    string title = 3;
+    string genres = 4;
+}
+
+
+message ReCallRequest{
+    int64 user_id = 1;
+}
+
+message ReCallResponse{
+    repeated int64 movie_list=1;
+}
+//message RecallRequest{
+//    int64 user_id = 1;
+//}
+//
+//message RecallResponse{
+//    repeated int64 list = 1;
+//}
+
+message ScoreRequest{
+    repeated int64 movie_id_list = 1;
+    UserProfileResponse user_profile = 2;
+    repeated MovieProfileResponse movie_profiles = 3;
+}
+
+message ScoreResponse{
+    repeated Score scores= 1;
+}
+
+message Score{
+    int64 movie_id = 1;
+    string title = 2;
+    double score = 3;
+}

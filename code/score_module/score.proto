@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package serve;
+
+service ScoreService{
+    rpc CallScore(ScoreRequest) returns (ScoreResponse){}
+}
+
+message ScoreRequest{
+    repeated int64 movie_id_list = 1;
+    UserProfileResponse user_profile = 2;
+    repeated MovieProfileResponse movie_profiles = 3;
+}
+
+message ScoreResponse{
+    repeated Score scores= 1;
+}
+
+message Score{
+    int64 movie_id = 1;
+    string title = 2;
+    double score = 3;
+}
+message UserProfileResponse{
+    string f = 1;
+    string h = 2;
+    double high = 3;
+    int32 total = 4;
+    double hratings = 5;
+}
+message MovieProfileResponse{
+    double mean =1;
+    int32 total_time = 2;
+    string title = 3;
+    string genres = 4;
+}

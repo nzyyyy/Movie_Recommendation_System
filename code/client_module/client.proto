@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package serve;
+service MainService{
+    rpc Call(MainRequest) returns (ScoreResponse){}
+}
+message MainRequest{
+    int64 user_id = 1;
+}
+message ScoreResponse{
+    repeated Score scores= 1;
+}
+
+message Score{
+    int64 movie_id = 1;
+    string title = 2;
+    double score = 3;
+}

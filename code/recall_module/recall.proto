@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package serve;
+
+service ReCallService{
+    rpc CallReCall(ReCallRequest) returns (ReCallResponse){}
+}
+
+message ReCallRequest{
+    int64 user_id = 1;
+}
+
+message ReCallResponse{
+    repeated int64 movie_list=1;
+}
